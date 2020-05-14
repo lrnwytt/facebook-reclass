@@ -1,4 +1,4 @@
-import { ACTION_TYPES, DEFAULT_REDUCERS } from '../common';
+import { ACTION_TYPES, DEFAULT_REDUCERS } from '../constants';
 
 export const volunteers = (state = DEFAULT_REDUCERS.VOLUNTEERS, action) => {
     switch (action.type) {
