@@ -13,7 +13,7 @@ export const VolunteerList = (props) => {
         <div className='volunteer-list'>
             <ol className='volunteer-list__volunteers'>
                 {
-                    volunteers.map(volunteer => <VolunteerListItem volunteer={volunteer} />)
+                    volunteers.map((volunteer, idx) => <VolunteerListItem volunteer={volunteer} key={idx} />)
                 }
             </ol>
         </div>
