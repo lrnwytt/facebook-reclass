@@ -27,7 +27,7 @@ export const DonationListItem = ({ donation, activeDonationForAttribution, setAc
     );
 };
 
-export const DonationAttribution = ({ setAttributionForDonation, facebookDonations, activeDonationForAttribution, setActiveDonationForAttribution, volunteers }) => {
+export const DonationAttribution = ({ setAttributionForDonation, facebookDonations, activeDonationForAttribution, setActiveDonationForAttribution, volunteers, setCurrentStep }) => {
     return (
         <div className='donation-attribution'>
             <ol className='donation-attribution__donations'>
@@ -36,6 +36,7 @@ export const DonationAttribution = ({ setAttributionForDonation, facebookDonatio
                 }
             </ol>
             <ActiveDonation setAttributionForDonation={setAttributionForDonation} volunteers={volunteers} facebookDonations={facebookDonations} activeDonationForAttribution={activeDonationForAttribution} />
+            <button onClick={() => setCurrentStep(3)}>Next</button>
         </div>
     );
 }
@@ -43,5 +44,6 @@ export const DonationAttribution = ({ setAttributionForDonation, facebookDonatio
 DonationAttribution.propTypes = {
     facebookDonations: PropTypes.array.isRequired,
     activeDonationForAttribution: PropTypes.string.isRequired,
-    setActiveDonationForAttribution: PropTypes.func.isRequired
+    setActiveDonationForAttribution: PropTypes.func.isRequired,
+    setCurrentStep: PropTypes.func.isRequired
 };

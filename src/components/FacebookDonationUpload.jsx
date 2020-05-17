@@ -31,7 +31,6 @@ export class FacebookDonationUpload extends React.Component {
         return (
             <div className='donation-uploader'>
                 <input type='file' onChange={({ target }) => this.onFileUpload(target.files[0])} />
-                <button onClick={() => setCurrentStep(0)}>Back</button>
                 <button onClick={() => setCurrentStep(2)}>Next</button>
             </div>
         );
