@@ -8,7 +8,7 @@ import { StepList } from './StepList';
 import { DonationAttribution } from './DonationAttribution';
 
 import { setVolunteers } from '../actions/volunteer_file_upload';
-import { setFacebookDonations, setActiveDonationForAttribution } from '../actions/facebook_donactions_upload';
+import { setFacebookDonations, setActiveDonationForAttribution, setAttributionForDonation } from '../actions/facebook_donactions_upload';
 import { setCurrentStep } from '../actions/app';
 
 import { DEFAULT_REDUCERS } from '../constants';
@@ -21,7 +21,8 @@ export const Steps = ({
     setVolunteers,
     volunteers,
     facebookDonations,
-    setActiveDonationForAttribution
+    setActiveDonationForAttribution,
+    setAttributionForDonation
 }) => {
     switch (currentStep) {
         case 0:
@@ -29,7 +30,7 @@ export const Steps = ({
         case 1:
             return <FacebookDonationUpload setFacebookDonations={setFacebookDonations} volunteers={volunteers} setCurrentStep={setCurrentStep} setActiveDonationForAttribution={setActiveDonationForAttribution} />;
         case 2:
-            return <DonationAttribution facebookDonations={facebookDonations} setActiveDonationForAttribution={setActiveDonationForAttribution} activeDonationForAttribution={activeDonationForAttribution} />;
+            return <DonationAttribution setAttributionForDonation={setAttributionForDonation} volunteers={volunteers} facebookDonations={facebookDonations} setActiveDonationForAttribution={setActiveDonationForAttribution} activeDonationForAttribution={activeDonationForAttribution} />;
         default:
             return null;
     }
@@ -70,7 +71,8 @@ const mapDispatchToProps = dispatch => ({
     setCurrentStep: currentStep => dispatch(setCurrentStep(currentStep)),
     setVolunteers: volunteers => dispatch(setVolunteers(volunteers)),
     setFacebookDonations: facebookDonations => dispatch(setFacebookDonations(facebookDonations)),
-    setActiveDonationForAttribution: donation => dispatch(setActiveDonationForAttribution(donation))
+    setActiveDonationForAttribution: donation => dispatch(setActiveDonationForAttribution(donation)),
+    setAttributionForDonation: (salesReceiptNumber, volunteer) => dispatch(setAttributionForDonation(salesReceiptNumber, volunteer))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
