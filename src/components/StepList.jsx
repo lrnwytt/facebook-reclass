@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const STEPS = [
-    'Upload Volunteer List',
-    'Upload Facebook Donations',
-    'Assign Volunteer to Donations',
+    'Volunteer List Upload',
+    'Facebook Donation Upload',
+    'Contribution Attribution',
     'Final Review'
 ];
 
@@ -17,15 +17,13 @@ export const stepStatus = (currentStep, stepId) => {
     return 'incomplete';
 }
 
-export const StepListItem = (props) => {
-    const { currentStep, step, stepId } = props;
+export const StepListItem = ({ currentStep, step, stepId }) => {
     return (
         <li className={`step-list__step step-list__step--${stepStatus(currentStep, stepId)}`}>{step}</li>
     );
 };
 
-export const StepList = (props) => {
-    const { currentStep } = props;
+export const StepList = ({ currentStep }) => {
     return (
         <div className='step-list'>
             <ol className='step-list__steps'>
