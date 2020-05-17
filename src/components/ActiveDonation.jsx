@@ -8,7 +8,6 @@ const DEFAULT = 'DEFAULT';
 
 export const ValunteerDropdown = ({ volunteers, activeDonationData, setAttributionForDonation }) => {
     const { referenceNumber, salesReceiptNumber } = activeDonationData;
-    console.log(activeDonationData);
     return (
         <select onChange={({ target }) => setAttributionForDonation(salesReceiptNumber, target.value)}>
             <option value={DEFAULT} disabled={true} selected={!referenceNumber}>Attributed Volunteer</option>
