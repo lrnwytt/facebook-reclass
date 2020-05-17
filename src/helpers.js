@@ -1,7 +1,8 @@
 import {
     FB_DONATION_CSV_MAP,
     FB_DONATION_TRANSFORM_MAP,
-    ORDERED_SALES_RECEIPT_HEADERS
+    ORDERED_SALES_RECEIPT_HEADERS,
+    DEFAULT_REDUCERS
 } from './constants';
 import { transformDonationData } from './transformers';
 
@@ -51,3 +52,9 @@ export const extractDonationData = donationData => donationData.reduce(function 
     const cellKey = FB_DONATION_CSV_MAP[idx];
     return { ...acc, [cellKey]: curr };
 }, {});
+
+export const determineFirstIncompleteDonation = donations => {
+    const incompleteDonation = donations.find(donation => !donation.referenceNumber);
+    console.log(incompleteDonation);
+    return incompleteDonation.salesReceiptNumber || DEFAULT_REDUCERS.ACTIVE_DONATION_FOR_ATTRIBUTION
+};

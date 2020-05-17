@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { extractCSVData } from '../helpers';
+import { extractCSVData, determineFirstIncompleteDonation } from '../helpers';
 
 export class FacebookDonationUpload extends React.Component {
     constructor() {
@@ -10,7 +10,7 @@ export class FacebookDonationUpload extends React.Component {
     }
 
     onFileUpload(file) {
-        const { setFacebookDonations, volunteers } = this.props;
+        const { setFacebookDonations, volunteers, setActiveDonationForAttribution } = this.props;
 
         const fileReader = new FileReader();
         fileReader.onload = ({ target }) => {
@@ -21,6 +21,7 @@ export class FacebookDonationUpload extends React.Component {
                 volunteers
             });
             setFacebookDonations(facebookDonations);
+            setActiveDonationForAttribution(determineFirstIncompleteDonation(facebookDonations));
         }
         fileReader.readAsText(file);
     }
