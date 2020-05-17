@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import XLSX from 'xlsx';
 
+import { VolunteerList } from './VolunteerList';
+
 export const extractVolunteers = worksheet => {
     let volunteers = [];
     for (let key in worksheet) {
@@ -36,9 +38,12 @@ export class VolunteerFileUpload extends React.Component {
     }
 
     render() {
+        const { volunteers, setCurrentStep } = this.props;
         return (
-            <div className='volunteer-uploader__container'>
+            <div className='volunteer-uploader'>
                 <input type='file' onChange={({ target }) => this.onFileUpload(target.files[0])} />
+                <VolunteerList volunteers={volunteers} />
+                <button onClick={() => setCurrentStep(1)}>Next</button>
             </div>
         );
     }

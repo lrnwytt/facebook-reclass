@@ -26,15 +26,18 @@ export class FacebookDonationUpload extends React.Component {
     }
 
     render() {
-        window.volunteers = this.props.volunteers;
+        const { setCurrentStep } = this.props;
         return (
-            <div className='donation-uploader__container'>
+            <div className='donation-uploader'>
                 <input type='file' onChange={({ target }) => this.onFileUpload(target.files[0])} />
+                <button onClick={() => setCurrentStep(0)}>Back</button>
+                <button onClick={() => setCurrentStep(2)}>Next</button>
             </div>
         );
     }
 }
 
 FacebookDonationUpload.propTypes = {
-    volunteers: PropTypes.array.isRequired
+    volunteers: PropTypes.array.isRequired,
+    setCurrentStep: PropTypes.func.isRequired
 };
