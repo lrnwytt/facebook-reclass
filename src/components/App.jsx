@@ -6,6 +6,7 @@ import { FacebookDonationUpload } from './FacebookDonationUpload';
 import { VolunteerFileUpload } from './VolunteerFileUpload'
 import { StepList } from './StepList';
 import { DonationAttribution } from './DonationAttribution';
+import { FinalReview } from './FinalReview';
 
 import { setVolunteers } from '../actions/volunteer_file_upload';
 import { setFacebookDonations, setActiveDonationForAttribution, setAttributionForDonation } from '../actions/facebook_donactions_upload';
@@ -30,7 +31,9 @@ export const Steps = ({
         case 1:
             return <FacebookDonationUpload setFacebookDonations={setFacebookDonations} volunteers={volunteers} setCurrentStep={setCurrentStep} setActiveDonationForAttribution={setActiveDonationForAttribution} />;
         case 2:
-            return <DonationAttribution setAttributionForDonation={setAttributionForDonation} volunteers={volunteers} facebookDonations={facebookDonations} setActiveDonationForAttribution={setActiveDonationForAttribution} activeDonationForAttribution={activeDonationForAttribution} />;
+            return <DonationAttribution setCurrentStep={setCurrentStep} setAttributionForDonation={setAttributionForDonation} volunteers={volunteers} facebookDonations={facebookDonations} setActiveDonationForAttribution={setActiveDonationForAttribution} activeDonationForAttribution={activeDonationForAttribution} />;
+        case 3:
+            return <FinalReview />;
         default:
             return null;
     }

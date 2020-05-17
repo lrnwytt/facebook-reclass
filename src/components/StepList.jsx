@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const STEPS = [
-    'Volunteer List Upload',
-    'Facebook Donation Upload',
-    'Contribution Attribution',
-    'Final Review'
+    'Volunteer List Upload', // upload volunteer list to store for dropdowns
+    'Facebook Donation Upload', // upload fb donations from facebook
+    'Contribution Attribution', // select members to attribute donations to
+    'Final Review' // upload facebook fundraiser report
 ];
 
 export const stepStatus = (currentStep, stepId) => {
