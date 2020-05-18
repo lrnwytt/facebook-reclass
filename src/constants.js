@@ -96,9 +96,47 @@ export const FB_DONATION_TRANSFORM_MAP = {
     }
 };
 
+export const FB_DONATION_JOURNAL_ENTRY_MAP = {
+    JOURNAL_NUMBER: {
+        label: 'Journal No',
+        id: 'journalNumber'
+    },
+    JOURNAL_DATE: {
+        label: 'Journal Date',
+        id: 'journalDate'
+    },
+    ACCOUNT: {
+        label: 'Account',
+        id: 'account'
+    },
+    AMOUNT: {
+        label: 'Amount (Credit or Debit)',
+        id: 'amount'
+    },
+    DESCRIPTION: {
+        label: 'Description',
+        id: 'description'
+    },
+    NAME: {
+        label: 'Name',
+        id: 'name'
+    }
+};
+
 export const FB_DONATION_SOURCE_MAP = {
     fundraiser: '1) Donations:FB Donations - Fundraiser',
     donate_button_user_posts: '1) Donations:FB Donations - Button'
 };
 
+export const FB_DONATION_ACCOUNT_MAP = {
+    publicDonations: '40000 Public Donations - Individual',
+    accountsReceivable: '11000 Accounts Receivable'
+};
+
+export const FB_DONATION_DESCRIPTION_MAP = (saledReceiptNumber) => ({
+    salesReceipt: `Sales Receipt | ${saledReceiptNumber}`,
+    fbReclass: 'Facebook Donation Reclass'
+});
+
 export const ORDERED_SALES_RECEIPT_HEADERS = Object.values(FB_DONATION_TRANSFORM_MAP).map(header => header.label).join(',');
+export const ORDERED_JOURNAL_ENTRY_HEADERS = Object.values(FB_DONATION_JOURNAL_ENTRY_MAP).map(header => header.label).join(',');

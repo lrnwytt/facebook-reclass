@@ -1,8 +1,10 @@
 import {
     FB_DONATION_CSV_MAP,
+    FB_DONATION_JOURNAL_ENTRY_MAP,
     FB_DONATION_TRANSFORM_MAP,
     ORDERED_SALES_RECEIPT_HEADERS,
-    DEFAULT_REDUCERS
+    DEFAULT_REDUCERS,
+    ORDERED_JOURNAL_ENTRY_HEADERS
 } from './constants';
 import { transformDonationData } from './transformers';
 
@@ -12,9 +14,9 @@ export const titleCase = (str) => str
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
 
-export const exportTransformedCSV = (facebookDonations) => {
+export const exportSalesReceiptCSV = (facebookDonations) => {
     const customerCSVData = facebookDonations.map((facebookDonation) => {
-        return Object.keys(facebookDonation).reduce(function (acc, curr, idx) {
+        return Object.keys(facebookDonation).reduce((acc, curr, idx) => {
             const columnKey = Object.values(FB_DONATION_TRANSFORM_MAP)[idx].id;
             const cellData = facebookDonation[columnKey];
             return acc ? `${acc},${cellData}` : cellData;
@@ -24,7 +26,23 @@ export const exportTransformedCSV = (facebookDonations) => {
     var hiddenElement = document.createElement('a');
     hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(salesReceiptCSVData.join('\n'));
     hiddenElement.target = '_blank';
-    hiddenElement.download = 'people.csv';
+    hiddenElement.download = 'sales_receipts.csv';
+    hiddenElement.click();
+};
+
+export const exportJounralEntryCSV = (jounrnalEntryList) => {
+    const customerCSVData = jounrnalEntryList.map((jounralEntry) => {
+        return Object.keys(jounralEntry).reduce((acc, curr, idx) => {
+            const columnKey = Object.values(FB_DONATION_JOURNAL_ENTRY_MAP)[idx].id;
+            const cellData = jounralEntry[columnKey];
+            return acc ? `${acc},${cellData}` : cellData;
+        }, '');
+    });
+    const journalEntryCSVData = [ORDERED_JOURNAL_ENTRY_HEADERS, ...customerCSVData];
+    var hiddenElement = document.createElement('a');
+    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(journalEntryCSVData.join('\n'));
+    hiddenElement.target = '_blank';
+    hiddenElement.download = 'journal_entries.csv';
     hiddenElement.click();
 };
 
@@ -48,7 +66,7 @@ export const referenceNumberOrNone = (campaignOwnerName, customerName, volunteer
     return '';
 }
 
-export const extractDonationData = donationData => donationData.reduce(function (acc, curr, idx) {
+export const extractDonationData = donationData => donationData.reduce((acc, curr, idx) => {
     const cellKey = FB_DONATION_CSV_MAP[idx];
     return { ...acc, [cellKey]: curr };
 }, {});

@@ -33,7 +33,7 @@ export const Steps = ({
         case 2:
             return <DonationAttribution setCurrentStep={setCurrentStep} setAttributionForDonation={setAttributionForDonation} volunteers={volunteers} facebookDonations={facebookDonations} setActiveDonationForAttribution={setActiveDonationForAttribution} activeDonationForAttribution={activeDonationForAttribution} />;
         case 3:
-            return <FinalReview />;
+            return <FinalReview facebookDonations={facebookDonations} />;
         default:
             return null;
     }
