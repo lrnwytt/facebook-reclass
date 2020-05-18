@@ -14,6 +14,8 @@ import { setCurrentStep } from '../actions/app';
 
 import { DEFAULT_REDUCERS } from '../constants';
 
+import '../styles/index.scss';
+
 export const Steps = ({
     activeDonationForAttribution,
     currentStep,

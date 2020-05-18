@@ -8,18 +8,41 @@ const STEPS = [
     'Final Review' // upload facebook fundraiser report
 ];
 
+const STEP_STATUS = {
+    ACTIVE: 'active',
+    COMPLETE: 'complete',
+    INCOMPLETE: 'incomplete'
+};
+
 export const stepStatus = (currentStep, stepId) => {
     if (stepId === currentStep) {
-        return 'active';
+        return STEP_STATUS.ACTIVE;
     } else if (stepId < currentStep) {
-        return 'complete';
+        return STEP_STATUS.COMPLETE;
     }
-    return 'incomplete';
+    return STEP_STATUS.INCOMPLETE;
 }
 
+export const StepStatusIndicator = ({ currentStepStatus, stepId }) => {
+    switch (currentStepStatus) {
+        case STEP_STATUS.ACTIVE:
+        case STEP_STATUS.INCOMPLETE:
+            return <span className='step-list__step-indicator'>{stepId + 1}</span>;
+        case STEP_STATUS.COMPLETE:
+            return <span className='step-list__step-indicator'><i className='fa fa-check' /></span>;
+        default:
+            return null;
+    }
+};
+
 export const StepListItem = ({ currentStep, step, stepId }) => {
+    const currentStepStatus = stepStatus(currentStep, stepId);
     return (
-        <li className={`step-list__step step-list__step--${stepStatus(currentStep, stepId)}`}>{step}</li>
+        <li className={`step-list__step step-list__step--${currentStepStatus}`}>
+            <StepStatusIndicator currentStepStatus={currentStepStatus} stepId={stepId} />
+            <span className='step-list__step-label'>{step}</span>
+            {stepId < 3 && <span className='step-list__divider-line' />}
+        </li>
     );
 };
 

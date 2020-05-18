@@ -1,0 +1,66 @@
+@import './variables.scss';
+
+.step-list {
+    width: 25%;
+    max-width: 300px;
+    background: white;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    border-right: 2px solid $mediumGray;
+
+    &__steps {
+        margin: 50px 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__step {
+        padding: 0 20px;
+    }
+
+    &__step-indicator {
+        height: 30px;
+        width: 30px;
+        display: inline-block;
+        text-align: center;
+        line-height: 30px;
+        border-radius: 100%;
+    }
+
+    &__step-label {
+        display: inline-block;
+        margin-left: 10px;
+    }
+
+    &__divider-line {
+        display: block;
+        height: 25px;
+        border-left: 1px solid $mediumGray;
+        margin-left: 15px;
+    }
+
+    &__step--complete {
+        .step-list__step-indicator {
+            background: $mediumGreen;
+            color: white;
+        }
+    }
+
+    &__step--active {
+        font-weight: 600;
+        .step-list__step-indicator {
+            background: #4399e4;
+            color: white;
+        }
+    }
+
+    &__step--incomplete {
+        .step-list__step-indicator {
+            background: $mediumGray;
+            color: white;
+            font-weight: 600;
+        }
+    }
+}
