@@ -1,0 +1,26 @@
+.volunteer-list {
+    &__volunteers {    
+        width: 700px;
+        margin: 0 auto;
+        padding: 20px 20px 20px 50px;
+        background: white;
+        box-shadow: 1px 1px 5px 0px #d9e0e7;
+    }
+
+    &__volunteer {
+        padding: 5px 0;
+    }
+}
+
+.volunteer-uploader {
+    flex-grow: 1;
+    height: calc(100vh);
+    overflow-y: auto;
+
+    &__instructions {
+        text-align: center;
+        width: 80%;
+        margin: 30px auto;
+        color: #677684;
+    }
+}

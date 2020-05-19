@@ -1,5 +1,6 @@
 @import './variables.scss';
 @import '_sidebar.scss';
+@import '_volunteers.scss';
 
 body,
 html {
@@ -10,4 +11,49 @@ html {
     color: $textDarkGray;
     background: $lightGray;
     font-family: 'Open Sans', sans-serif;
+}
+
+.app {
+    display: flex;
+}
+
+.volunteer-uploader {
+    flex-grow: 1;
+    height: calc(100vh);
+    overflow-y: auto;
+}
+
+.section-container {
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.button-container {
+    height: 50px;
+}
+
+button {
+    background: $mediumBlue;
+    border-radius: 4px;
+    padding: 6px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    border: none;
+    box-shadow: none;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+
+    &:hover,
+    &:active,
+    &:focus {
+        background: $darkBlue;
+        cursor: pointer;
+    }
+
+    &.disabled {
+        background: $lightGray;
+        color: $mediumGray;
+    }
 }
