@@ -1,6 +1,7 @@
 @import './variables.scss';
 @import '_sidebar.scss';
 @import '_volunteers.scss';
+@import '_donations.scss';
 
 body,
 html {
@@ -17,7 +18,8 @@ html {
     display: flex;
 }
 
-.volunteer-uploader {
+.volunteer-uploader,
+.donation-uploader {
     flex-grow: 1;
     height: calc(100vh);
     overflow-y: auto;
@@ -32,7 +34,7 @@ html {
     height: 50px;
 }
 
-button {
+.button-container button {
     background: $mediumBlue;
     border-radius: 4px;
     padding: 6px 20px;

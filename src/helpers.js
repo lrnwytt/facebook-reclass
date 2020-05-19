@@ -73,7 +73,7 @@ export const extractDonationData = donationData => donationData.reduce((acc, cur
 
 export const determineFirstIncompleteDonation = donations => {
     const incompleteDonation = donations.find(donation => !donation.referenceNumber);
-    return incompleteDonation.salesReceiptNumber || DEFAULT_REDUCERS.ACTIVE_DONATION_FOR_ATTRIBUTION
+    return (incompleteDonation && incompleteDonation.salesReceiptNumber) || DEFAULT_REDUCERS.ACTIVE_DONATION_FOR_ATTRIBUTION
 };
 
 export const pluckActiceDonationData = (donations, activeDonationForAttribution) => donations.find(donation => donation.salesReceiptNumber === activeDonationForAttribution);
