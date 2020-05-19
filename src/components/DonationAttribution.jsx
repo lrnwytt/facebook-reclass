@@ -15,12 +15,17 @@ export const donationStatus = (donation, activeDonationForAttribution) => {
 export const DonationListItem = ({ donation, activeDonationForAttribution, setActiveDonationForAttribution }) => {
     return (
         <li className={`donation donation--${donationStatus(donation, activeDonationForAttribution)}`}>
-            <button onClick={() => setActiveDonationForAttribution(donation.salesReceiptNumber)}>
-                <div className='donation__donor'>
-                    {donation.customer}
+            <button className={activeDonationForAttribution === donation.salesReceiptNumber && 'active'} onClick={() => setActiveDonationForAttribution(donation.salesReceiptNumber)}>
+                <div className={`donation__icon donation__icon--${donation.referenceNumber ? 'set' : 'unset'}`}>
+                    {donation.referenceNumber ? <i className='fa fa-check' /> : <i className='fa fa-times' />}
                 </div>
-                <div className='donation__owner'>
-                    {donation.referenceNumber || 'None'}
+                <div className='donation__info'>
+                    <div className='donation__donor'>
+                        {donation.customer}
+                    </div>
+                    <div className='donation__owner'>
+                        {donation.referenceNumber || 'None'}
+                    </div>
                 </div>
             </button>
         </li>
@@ -36,7 +41,6 @@ export const DonationAttribution = ({ setAttributionForDonation, facebookDonatio
                 }
             </ol>
             <ActiveDonation setAttributionForDonation={setAttributionForDonation} volunteers={volunteers} facebookDonations={facebookDonations} activeDonationForAttribution={activeDonationForAttribution} />
-            <button onClick={() => setCurrentStep(3)}>Next</button>
         </div>
     );
 }
