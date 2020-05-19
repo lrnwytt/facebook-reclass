@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 const STEPS = [
     'Volunteer List Upload', // upload volunteer list to store for dropdowns
     'Facebook Donation Upload', // upload fb donations from facebook
-    'Contribution Attribution', // select members to attribute donations to
-    'Final Review' // upload facebook fundraiser report
 ];
 
 const STEP_STATUS = {
@@ -41,7 +39,7 @@ export const StepListItem = ({ currentStep, step, stepId }) => {
         <li className={`step-list__step step-list__step--${currentStepStatus}`}>
             <StepStatusIndicator currentStepStatus={currentStepStatus} stepId={stepId} />
             <span className='step-list__step-label'>{step}</span>
-            {stepId < 3 && <span className='step-list__divider-line' />}
+            {stepId < 1 && <span className='step-list__divider-line' />}
         </li>
     );
 };

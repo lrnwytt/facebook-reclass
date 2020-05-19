@@ -5,8 +5,6 @@ import { connect } from 'react-redux';
 import { FacebookDonationUpload } from './FacebookDonationUpload';
 import { VolunteerFileUpload } from './VolunteerFileUpload'
 import { StepList } from './StepList';
-import { DonationAttribution } from './DonationAttribution';
-import { FinalReview } from './FinalReview';
 
 import { setVolunteers } from '../actions/volunteer_file_upload';
 import { setFacebookDonations, setActiveDonationForAttribution, setAttributionForDonation } from '../actions/facebook_donactions_upload';
@@ -31,11 +29,15 @@ export const Steps = ({
         case 0:
             return <VolunteerFileUpload setVolunteers={setVolunteers} volunteers={volunteers} setCurrentStep={setCurrentStep} />;
         case 1:
-            return <FacebookDonationUpload setFacebookDonations={setFacebookDonations} volunteers={volunteers} setCurrentStep={setCurrentStep} setActiveDonationForAttribution={setActiveDonationForAttribution} />;
-        case 2:
-            return <DonationAttribution setCurrentStep={setCurrentStep} setAttributionForDonation={setAttributionForDonation} volunteers={volunteers} facebookDonations={facebookDonations} setActiveDonationForAttribution={setActiveDonationForAttribution} activeDonationForAttribution={activeDonationForAttribution} />;
-        case 3:
-            return <FinalReview facebookDonations={facebookDonations} />;
+            return <FacebookDonationUpload
+                activeDonationForAttribution={activeDonationForAttribution}
+                facebookDonations={facebookDonations}
+                setActiveDonationForAttribution={setActiveDonationForAttribution}
+                setAttributionForDonation={setAttributionForDonation}
+                setCurrentStep={setCurrentStep}
+                setFacebookDonations={setFacebookDonations}
+                volunteers={volunteers}
+            />;
         default:
             return null;
     }

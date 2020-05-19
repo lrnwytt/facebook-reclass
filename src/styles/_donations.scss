@@ -1,0 +1,12 @@
+.donation-uploader {
+    flex-grow: 1;
+    height: calc(100vh);
+    overflow-y: auto;
+
+    &__instructions {
+        text-align: center;
+        width: 80%;
+        margin: 30px auto;
+        color: #677684;
+    }
+}
