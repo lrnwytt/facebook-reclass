@@ -157,7 +157,6 @@ export class FacebookDonationUpload extends React.Component {
     render() {
         const { setCurrentStep, setAttributionForDonation, volunteers, facebookDonations, setActiveDonationForAttribution, activeDonationForAttribution } = this.props;
         const firstIncompleteDonation = determineFirstIncompleteDonation(facebookDonations);
-        console.log(firstIncompleteDonation);
         return (
             <div className='donation-uploader'>
                 <div className='section-container'>
@@ -170,8 +169,8 @@ export class FacebookDonationUpload extends React.Component {
                         </p>
                     </div>
                     <BasicDropzone onFileUpload={this.onFileUpload} />
-                    {facebookDonations.length !== 0 && <DonationAttribution setCurrentStep={setCurrentStep} setAttributionForDonation={setAttributionForDonation} volunteers={volunteers} facebookDonations={facebookDonations} setActiveDonationForAttribution={setActiveDonationForAttribution} activeDonationForAttribution={activeDonationForAttribution} />}
                 </div>
+                {facebookDonations.length !== 0 && <DonationAttribution setCurrentStep={setCurrentStep} setAttributionForDonation={setAttributionForDonation} volunteers={volunteers} facebookDonations={facebookDonations} setActiveDonationForAttribution={setActiveDonationForAttribution} activeDonationForAttribution={activeDonationForAttribution} />}
                 <div className='button-container'>
                     <button disabled={firstIncompleteDonation || !facebookDonations.length} className={`${(firstIncompleteDonation || !facebookDonations.length) && 'disabled'}`} onClick={this.onDownload}>Download</button>
                 </div>
