@@ -1,13 +1,9 @@
 @import './variables.scss';
 
 .step-list {
-    width: 25%;
-    max-width: 300px;
+    min-width: 325px;
+    height: calc(100vh);
     background: white;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
     border-right: 2px solid $mediumGray;
 
     &__steps {
