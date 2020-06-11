@@ -1,3 +1,4 @@
+import moment from 'moment';
 import {
     FB_DONATION_SOURCE_MAP,
     FB_DONATION_TRANSFORM_MAP
@@ -34,10 +35,11 @@ export const transformDonationData = ({
 }, volunteers) => {
     const customerName = `${titleCase(firstName)} ${titleCase(lastName)}`;
     const referenceNumber = referenceNumberOrNone(campaignOwnerName, customerName, volunteers);
+    const chargeDateMoment = moment(chargeDate, "YYYY-MM-DD");
     return {
         [SALES_RECEIPT_NUMBER.id]: paymentId,
         [CUSTOMER.id]: customerName,
-        [SALES_RECEIPT_DATE.id]: chargeDate,
+        [SALES_RECEIPT_DATE.id]: chargeDateMoment.format("MM-DD-YYYY"),
         [DEPOSIT_TO.id]: 'Undeposited Funds',
         [PAYMENT_METHOD.id]: 'FB',
         [REFERENCE_NUMBER.id]: referenceNumber,
