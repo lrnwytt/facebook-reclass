@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { pluckActiceDonationData } from '../helpers';
+import { pluckActiveDonationData } from '../helpers';
 import { FB_DONATION_TRANSFORM_MAP } from '../constants';
 
 const DEFAULT = 'DEFAULT';
@@ -56,7 +56,7 @@ export const ActiveDonationData = ({ columnData, activeDonationData, volunteers,
 };
 
 export const ActiveDonation = ({ facebookDonations, activeDonationForAttribution, volunteers, setAttributionForDonation }) => {
-    const activeDonationData = pluckActiceDonationData(facebookDonations, activeDonationForAttribution);
+    const activeDonationData = pluckActiveDonationData(facebookDonations, activeDonationForAttribution);
     return (
         <div className='active-donation'>
             {Object.values(FB_DONATION_TRANSFORM_MAP).map((columnData, idx) => <ActiveDonationData key={idx} columnData={columnData} activeDonationData={activeDonationData} volunteers={volunteers} setAttributionForDonation={setAttributionForDonation} />)}
