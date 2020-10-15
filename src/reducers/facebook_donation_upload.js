@@ -9,7 +9,7 @@ export const facebookDonations = (state = DEFAULT_REDUCERS.FACEBOOK_DONATIONS, a
             return newState.reduce((acc, curr) => {
                 const newDonation = { ...curr };
                 if (curr.salesReceiptNumber === action.salesReceiptNumber) {
-                    newDonation.referenceNumber = action.volunteer;
+                    newDonation.customer = action.volunteer;
                 }
                 return [...acc, newDonation];
             }, []);

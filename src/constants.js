@@ -15,122 +15,98 @@ export const DEFAULT_REDUCERS = {
 };
 
 export const FB_DONATION_CSV_MAP = [
-    'paymentId',
-    'chargeTime',
-    'donationAmount',
-    'fbFee',
-    'netPayoutAmount',
-    'payoutCurrency',
-    'senderCurrency',
-    'taxAmount',
-    'taxUSDAmount',
-    'chargeActionTime',
-    'chargeDate',
-    'firstName',
-    'lastName',
-    'email',
-    'campaignId',
-    'fundraiserTitle',
-    'sourceName',
-    'permalink',
-    'charityId',
-    'campaignOwnerName',
-    'paymentProcessor',
-    'matchingDonation',
-    'fundraiserType',
-    'chargeTimePT'
+    'paymentId', // sales receipt number
+    'chargeTime', // not used
+    'donationAmount', // not used
+    'fbFee', // not used
+    'netPayoutAmount', // product/service amount
+    'payoutCurrency', // not used
+    'senderCurrency', // not used
+    'taxAmount', // not used
+    'taxUSDAmount', // not used
+    'chargeActionTime', // not used
+    'chargeDate', // sales receipt date
+    'firstName', // product/service description
+    'lastName', // product/service description
+    'email', // product/service description
+    'campaignId', // memo
+    'fundraiserTitle', // product/service description
+    'sourceName', // product/service
+    'permalink', // memo
+    'charityId', // not used
+    'campaignOwnerName', // customer
+    'paymentProcessor', // not used
+    'matchingDonation', // not used
+    'fundraiserType', // not used
+    'chargeTimePT' // reference no
 ];
 
 export const FB_DONATION_TRANSFORM_MAP = {
     SALES_RECEIPT_NUMBER: {
-        label: 'Sales Receipt No',
+        fieldLabel: 'Sales Receipt No',
+        salesReceiptLabel: 'Sales Receipt No',
         id: 'salesReceiptNumber'
     },
     CUSTOMER: {
-        label: 'Customer',
+        fieldLabel: 'Volunteer',
+        salesReceiptLabel: 'Customer',
         id: 'customer'
     },
     SALES_RECEIPT_DATE: {
-        label: 'Sales Receipt Date',
+        fieldLabel: 'Sales Receipt Date',
+        salesReceiptLabel: 'Sales Receipt Date',
         id: 'salesReceiptDate'
     },
     DEPOSIT_TO: {
-        label: 'Deposit To',
+        fieldLabel: 'Deposit To',
+        salesReceiptLabel: 'Deposit To',
         id: 'depositTo'
     },
     PAYMENT_METHOD: {
-        label: 'Payment Method',
+        fieldLabel: 'Payment Method',
+        salesReceiptLabel: 'Payment Method',
         id: 'paymentMethod'
     },
     REFERENCE_NUMBER: {
-        label: 'Reference No',
+        fieldLabel: 'Reference No',
+        salesReceiptLabel: 'Reference No',
         id: 'referenceNumber'
     },
     MEMO: {
-        label: 'Memo',
+        fieldLabel: 'Memo',
+        salesReceiptLabel: 'Memo',
         id: 'memo'
     },
     RECEIPT_MESSAGE: {
-        label: 'Message displayed on sales receipt',
+        fieldLabel: 'Message displayed on sales receipt',
+        salesReceiptLabel: 'Message displayed on sales receipt',
         id: 'receiptMessage'
     },
     EMAIL: {
-        label: 'Email',
+        fieldLabel: 'Email',
+        salesReceiptLabel: 'Email',
         id: 'email'
     },
     PRODUCT: {
-        label: 'Product/Service',
+        fieldLabel: 'Product/Service',
+        salesReceiptLabel: 'Product/Service',
         id: 'product'
     },
     DESCRIPTION: {
-        label: 'Product/Service Description',
+        fieldLabel: 'Product/Service Description',
+        salesReceiptLabel: 'Product/Service Description',
         id: 'description'
     },
     QUALTITY: {
-        label: 'Product/Service Quantity',
+        fieldLabel: 'Product/Service Quantity',
+        salesReceiptLabel: 'Product/Service Quantity',
         id: 'qualtity'
     },
     AMOUNT: {
-        label: 'Product/Service Amount',
+        fieldLabel: 'Product/Service Amount',
+        salesReceiptLabel: 'Product/Service Amount',
         id: 'amount'
     }
-};
-
-export const FB_DONATION_JOURNAL_ENTRY_MAP = {
-    JOURNAL_NUMBER: {
-        label: 'Journal No',
-        id: 'journalNumber'
-    },
-    JOURNAL_DATE: {
-        label: 'Journal Date',
-        id: 'journalDate'
-    },
-    ACCOUNT: {
-        label: 'Account',
-        id: 'account'
-    },
-    AMOUNT: {
-        label: 'Amount (Credit or Debit)',
-        id: 'amount'
-    },
-    DESCRIPTION: {
-        label: 'Description',
-        id: 'description'
-    },
-    NAME: {
-        label: 'Name',
-        id: 'name'
-    }
-};
-
-export const FB_DONATION_SOURCE_MAP = {
-    fundraiser: '1) Donations:FB Donations - Fundraiser',
-    donate_button_user_posts: '1) Donations:FB Donations - Button'
-};
-
-export const FB_DONATION_ACCOUNT_MAP = {
-    publicDonations: '40000 Public Donations - Individual',
-    accountsReceivable: '11000 Accounts Receivable'
 };
 
 export const FB_DONATION_DESCRIPTION_MAP = (saledReceiptNumber) => ({
@@ -138,5 +114,4 @@ export const FB_DONATION_DESCRIPTION_MAP = (saledReceiptNumber) => ({
     fbReclass: 'Facebook Donation Reclass'
 });
 
-export const ORDERED_SALES_RECEIPT_HEADERS = Object.values(FB_DONATION_TRANSFORM_MAP).map(header => header.label).join(',');
-export const ORDERED_JOURNAL_ENTRY_HEADERS = Object.values(FB_DONATION_JOURNAL_ENTRY_MAP).map(header => header.label).join(',');
+export const ORDERED_SALES_RECEIPT_HEADERS = Object.values(FB_DONATION_TRANSFORM_MAP).map(header => header.salesReceiptLabel).join(',');
