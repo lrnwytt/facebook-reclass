@@ -6,7 +6,7 @@ import { ActiveDonation } from './ActiveDonation';
 export const donationStatus = (donation, activeDonationForAttribution) => {
     if (donation.salesReceiptNumber === activeDonationForAttribution) {
         return 'active';
-    } else if (donation.referenceNumber) {
+    } else if (donation.customer) {
         return 'complete';
     }
     return 'incomplete';
@@ -16,15 +16,15 @@ export const DonationListItem = ({ donation, activeDonationForAttribution, setAc
     return (
         <li className={`donation donation--${donationStatus(donation, activeDonationForAttribution)}`}>
             <button className={activeDonationForAttribution === donation.salesReceiptNumber && 'active'} onClick={() => setActiveDonationForAttribution(donation.salesReceiptNumber)}>
-                <div className={`donation__icon donation__icon--${donation.referenceNumber ? 'set' : 'unset'}`}>
-                    {donation.referenceNumber ? <i className='fa fa-check' /> : <i className='fa fa-times' />}
+                <div className={`donation__icon donation__icon--${donation.customer ? 'set' : 'unset'}`}>
+                    {donation.customer ? <i className='fa fa-check' /> : <i className='fa fa-times' />}
                 </div>
                 <div className='donation__info'>
                     <div className='donation__donor'>
-                        {donation.customer}
+                        {donation.donor}
                     </div>
                     <div className='donation__owner'>
-                        {donation.referenceNumber || 'None'}
+                        {donation.customer || 'None'}
                     </div>
                 </div>
             </button>

@@ -93,7 +93,8 @@ export class VolunteerFileUpload extends React.Component {
             const worksheet = workbook.Sheets[sheetname];
             const volunteers = extractVolunteers(worksheet);
 
-            setVolunteers(volunteers);
+            const unattributedVolunteer = 'Cheer Seattle';
+            setVolunteers([unattributedVolunteer, ...volunteers]);
         }
         fileReader.readAsArrayBuffer(file);
     }

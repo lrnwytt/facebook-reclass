@@ -7,14 +7,14 @@ import { FB_DONATION_TRANSFORM_MAP } from '../constants';
 const DEFAULT = 'DEFAULT';
 
 export const ValunteerDropdown = ({ volunteers, activeDonationData, setAttributionForDonation }) => {
-    const { referenceNumber, salesReceiptNumber } = activeDonationData;
+    const { customer, salesReceiptNumber } = activeDonationData;
     return (
         <select onChange={({ target }) => setAttributionForDonation(salesReceiptNumber, target.value)}>
-            <option value={DEFAULT} disabled={true} selected={!referenceNumber}>Attributed Volunteer</option>
+            <option value={DEFAULT} disabled={true} selected={!customer}>Attributed Volunteer</option>
             {
                 volunteers.map((volunteer, idx) => {
                     return (
-                        <option value={volunteer} key={idx} selected={referenceNumber === volunteer}>{volunteer}</option>
+                        <option value={volunteer} key={idx} selected={customer === volunteer}>{volunteer}</option>
                     );
                 })
             }
@@ -25,9 +25,9 @@ export const ValunteerDropdown = ({ volunteers, activeDonationData, setAttributi
 export const ActiveDonationData = ({ columnData, activeDonationData, volunteers, setAttributionForDonation }) => {
     const columnId = columnData.id;
     const dd = activeDonationData[columnId];
-    const dt = columnData.label;
+    const dt = columnData.fieldLabel;
     switch (columnId) {
-        case FB_DONATION_TRANSFORM_MAP.REFERENCE_NUMBER.id:
+        case FB_DONATION_TRANSFORM_MAP.CUSTOMER.id:
             return (
                 <dl className='active-donation__static-data'>
                     <dt>{dt}</dt>
@@ -57,9 +57,22 @@ export const ActiveDonationData = ({ columnData, activeDonationData, volunteers,
 
 export const ActiveDonation = ({ facebookDonations, activeDonationForAttribution, volunteers, setAttributionForDonation }) => {
     const activeDonationData = pluckActiveDonationData(facebookDonations, activeDonationForAttribution);
+    const DONATION_MAP_WITH_OWNER = {
+        CAMPAIGN_OWNER: {
+            fieldLabel: 'Campaign Owner',
+            salesReceiptLabel: 'Campaign Owner',
+            id: 'campaignOwner'
+        },
+        DONER: {
+            fieldLabel: 'Donor',
+            salesReceiptLabel: 'Donor',
+            id: 'donor'
+        },
+        ...FB_DONATION_TRANSFORM_MAP
+    };
     return (
         <div className='active-donation'>
-            {Object.values(FB_DONATION_TRANSFORM_MAP).map((columnData, idx) => <ActiveDonationData key={idx} columnData={columnData} activeDonationData={activeDonationData} volunteers={volunteers} setAttributionForDonation={setAttributionForDonation} />)}
+            {Object.values(DONATION_MAP_WITH_OWNER).map((columnData, idx) => <ActiveDonationData key={idx} columnData={columnData} activeDonationData={activeDonationData} volunteers={volunteers} setAttributionForDonation={setAttributionForDonation} />)}
         </div>
     );
 }
