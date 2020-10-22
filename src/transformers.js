@@ -47,7 +47,7 @@ export const transformDonationData = ({
         [MEMO.id]: permalink,
         [RECEIPT_MESSAGE.id]: fundraiserTitle,
         [EMAIL.id]: '',
-        [PRODUCT.id]: sourceName,
+        [PRODUCT.id]: sourceNameMap(sourceName),
         [DESCRIPTION.id]: `Facebook Donation from ${donorName}${ emailOrNone(email) }`,
         [QUALTITY.id]: '1',
         [AMOUNT.id]: netPayoutAmount,
@@ -57,3 +57,14 @@ export const transformDonationData = ({
 };
 
 export const emailOrNone = (email) => email ? ` ${email}` : '';
+
+export const sourceNameMap = (sourceName) => {
+    switch(sourceName) {
+        case 'fundraiser':
+            return '1) Donations:FB Donations - Fundraiser'
+        case 'donate_button_user_posts':
+            return '1) Donations:FB Donations - Button'
+        default:
+            return '';
+    }
+};
