@@ -23,28 +23,29 @@ const {
 export const transformDonationData = ({
     campaignOwnerName,
     chargeDate,
+    chargeTime,
     chargeTimePT,
+    email,
     firstName,
+    fundraiserTitle,
     lastName,
     netPayoutAmount,
     paymentId,
     permalink,
-    sourceName,
-    email
+    sourceName
 }, volunteers) => {
     const donorName = `${titleCase(firstName)} ${titleCase(lastName)}`;
     const volunteer = volunteerOrNone(campaignOwnerName, donorName, volunteers);
     const chargeDateMoment = moment(chargeDate, 'YYYY-MM-DD');
-    const chargeTimePTTransformmed = transformReferenceNumber(chargeTimePT);
     return {
         [SALES_RECEIPT_NUMBER.id]: paymentId,
         [CUSTOMER.id]: volunteer,
         [SALES_RECEIPT_DATE.id]: chargeDateMoment.format('MM-DD-YYYY'),
         [DEPOSIT_TO.id]: 'Undeposited Funds',
         [PAYMENT_METHOD.id]: 'FB',
-        [REFERENCE_NUMBER.id]: chargeTimePTTransformmed,
+        [REFERENCE_NUMBER.id]: chargeTime,
         [MEMO.id]: permalink,
-        [RECEIPT_MESSAGE.id]: 'Thank you for donating to CHEER Seattle!',
+        [RECEIPT_MESSAGE.id]: fundraiserTitle,
         [EMAIL.id]: '',
         [PRODUCT.id]: sourceName,
         [DESCRIPTION.id]: `Facebook Donation from ${donorName}${ emailOrNone(email) }`,
@@ -56,9 +57,3 @@ export const transformDonationData = ({
 };
 
 export const emailOrNone = (email) => email ? ` ${email}` : '';
-
-export const transformReferenceNumber = (chargeTimePT) => {
-    let referenceNumber = chargeTimePT.split(' ')[0].split('-');
-    referenceNumber[0] = referenceNumber[0].slice(2);
-    return referenceNumber.join('');
-}

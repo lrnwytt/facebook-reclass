@@ -78,7 +78,7 @@ export const FB_DONATION_TRANSFORM_MAP = {
         id: 'memo'
     },
     RECEIPT_MESSAGE: {
-        fieldLabel: 'Message displayed on sales receipt',
+        fieldLabel: 'Fundraiser Title',
         salesReceiptLabel: 'Message displayed on sales receipt',
         id: 'receiptMessage'
     },
