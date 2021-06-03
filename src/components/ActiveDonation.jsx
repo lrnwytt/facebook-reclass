@@ -23,6 +23,9 @@ export const ValunteerDropdown = ({ volunteers, activeDonationData, setAttributi
 }
 
 export const ActiveDonationData = ({ columnData, activeDonationData, volunteers, setAttributionForDonation }) => {
+    if (!activeDonationData) {
+        return null;
+    }
     const columnId = columnData.id;
     const dd = activeDonationData[columnId];
     const dt = columnData.fieldLabel;
